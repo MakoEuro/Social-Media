@@ -16,10 +16,16 @@ function sleep(duration) {
 }
 
 // Selectors
+const user = select('.user');
 
 const input = select('.input');
 const file = select('.file');
 const send = select('.send');
+
+const modal = select('.modal');
+const closeModal = select('.close');
+
+const newPosts = select('.wrapper');
 
 // Class
 class User {
@@ -55,6 +61,10 @@ class User {
         console.log("Invalid email, use 'example@mail.com' to register");
         return false;
     }
+
+    getInfo() {
+
+    }
 }
 
 class Subscriber extends User {
@@ -65,10 +75,50 @@ class Subscriber extends User {
     constructor(id, name, userName, email, pages, groups, canMonetize) {
         // Allows for usage inside this class
         super(id, name, userName, email);
-        
+
         this.#pages = pages;
         this.#groups = groups;
         this.#canMonetize = canMonetize;
     }
 }
 
+
+let newUser = new User('00001', 'Bob Jones', 'Bobblehead', 'BobBobble@mail.com');
+
+onEvent('click', send, function () {
+    let inputVal = input.value;
+
+    if(inputVal !== '') {
+
+    let element = document.createElement('div');
+   
+    newPosts.prepend(element);
+    element.classList.add('newPost');
+
+    let nameOfUser = document.createElement('h3');
+    nameOfUser.innerText = `Bob Jones`;
+    element.appendChild(nameOfUser);
+
+    let postText = document.createElement('p');
+    postText.innerText = `${inputVal}`;
+    element.appendChild(postText);
+
+    // Clears text for post
+    input.value = '';
+    } else {
+        console.log('Input text before pressing send');
+    }
+});
+
+onEvent('click', user, function() {
+    modal.style.display = 'block';
+    console.log('modal opened');
+});
+
+onEvent('click', closeModal, function() {
+    modal.style.display = 'none';
+});
+
+onEvent('click', window, function() {
+    modal.style.display = 'none';
+});
