@@ -23,6 +23,7 @@ const file = select('.file');
 const send = select('.send');
 
 const newPosts = select('.wrapper');
+const text = select('.text');
 
 // Class
 class User {
@@ -58,10 +59,6 @@ class User {
         console.log("Invalid email, use 'example@mail.com' to register");
         return false;
     }
-
-    getInfo() {
-
-    }
 }
 
 class Subscriber extends User {
@@ -79,6 +76,23 @@ class Subscriber extends User {
     }
 }
 
+function dateTime() {
+    // Generates names instead of numbers
+    const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+    "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
+    ];
+
+    // New date
+    const date = new Date();
+
+    // Day and Year
+    const day = date.getDate();
+    const year = date.getFullYear();
+
+    let newDate = `${monthNames[date.getMonth()]} ${day}, ${year}`;
+    return newDate;
+}
+
 let newUser = new User('00001', 'Bob Jones', 'Bobblehead', 'BobBobble@mail.com');
 
 onEvent('click', send, function () {
@@ -93,17 +107,25 @@ onEvent('click', send, function () {
         let userImg = document.createElement('div');
         userImg.classList.add('userImage');
         userImg.classList.add('header-post');
+        userImg.style.float = 'left';
         element.appendChild(userImg);
             
         let nameOfUser = document.createElement('h3');
         nameOfUser.innerText = `Bob Jones`;
         nameOfUser.classList.add('header-post');
+        nameOfUser.style.lineHeight = '40px';
         element.appendChild(nameOfUser);
+
+        let date = document.createElement('p');
+        date.innerText = dateTime();
+        date.classList.add('header-post');
+        date.style.float = 'right';
+        date.style.lineHeight = '40px';
+        element.appendChild(date);
 
         let postText = document.createElement('p');
         postText.innerText = `${inputVal}`;
         element.appendChild(postText);
-
         
         // Clears text for post
         input.value = '';
