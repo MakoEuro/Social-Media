@@ -22,9 +22,6 @@ const input = select('.input');
 const file = select('.file');
 const send = select('.send');
 
-const modal = select('.modal');
-const closeModal = select('.close');
-
 const newPosts = select('.wrapper');
 
 // Class
@@ -82,43 +79,35 @@ class Subscriber extends User {
     }
 }
 
-
 let newUser = new User('00001', 'Bob Jones', 'Bobblehead', 'BobBobble@mail.com');
 
 onEvent('click', send, function () {
     let inputVal = input.value;
 
     if(inputVal !== '') {
+        let element = document.createElement('div');
+    
+        newPosts.prepend(element);
+        element.classList.add('newPost');
 
-    let element = document.createElement('div');
-   
-    newPosts.prepend(element);
-    element.classList.add('newPost');
+        let userImg = document.createElement('div');
+        userImg.classList.add('userImage');
+        userImg.classList.add('header-post');
+        element.appendChild(userImg);
+            
+        let nameOfUser = document.createElement('h3');
+        nameOfUser.innerText = `Bob Jones`;
+        nameOfUser.classList.add('header-post');
+        element.appendChild(nameOfUser);
 
-    let nameOfUser = document.createElement('h3');
-    nameOfUser.innerText = `Bob Jones`;
-    element.appendChild(nameOfUser);
+        let postText = document.createElement('p');
+        postText.innerText = `${inputVal}`;
+        element.appendChild(postText);
 
-    let postText = document.createElement('p');
-    postText.innerText = `${inputVal}`;
-    element.appendChild(postText);
-
-    // Clears text for post
-    input.value = '';
+        
+        // Clears text for post
+        input.value = '';
     } else {
         console.log('Input text before pressing send');
     }
-});
-
-onEvent('click', user, function() {
-    modal.style.display = 'block';
-    console.log('modal opened');
-});
-
-onEvent('click', closeModal, function() {
-    modal.style.display = 'none';
-});
-
-onEvent('click', window, function() {
-    modal.style.display = 'none';
 });

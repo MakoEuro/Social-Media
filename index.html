@@ -11,7 +11,7 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat&family=Nunito+Sans:wght@600&display=swap">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer">
         <script src="assets/script/index.js" defer></script>
-        <title></title>
+        <title>HiveMind</title>
     </head>
     <body>
         <main>
@@ -29,21 +29,15 @@
                 <div class="user">
                 </div>
             </header>
-            <div class="modal">
-                <span class="close">&times;</span>
-                <div class="modal-body">
-                    <p>Some text in the Modal Body</p>
-                    <p>Some other text...</p>
-                  </div>
-            </div>
+            <!-- Modal insert here -->
             <div class="wrapper-main">
                 <form class="post">
-                    <textarea type="text" class="input" maxlength="300" placeholder="What's going on?"></textarea>
-                    <input type="file" class="file">
+                    <textarea type="text" class="input" maxlength="280" placeholder="What's going on?"></textarea>
+                    <input type="file" class="file" id="fileElem" accept="image/png, image/jpeg">
                     <button type="button" class="send">Post</button>
                 </form>
                 <div class="wrapper container">
-                    <!-- All contacts will appear here -->
+                    <!-- All posts will appear here -->
                 </div>
             </div>
         </main>
